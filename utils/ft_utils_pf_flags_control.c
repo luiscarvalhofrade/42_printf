@@ -36,4 +36,5 @@ void	ft_utils_pf_flags_control(char *s, pf_struct_i)
 			return ;
 		s++;
 	}
+	//%[$][flags][width][.precision][length modifier]conversion
 }
