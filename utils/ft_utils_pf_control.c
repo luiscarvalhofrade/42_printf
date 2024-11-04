@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_utils_pf_flags_control(char *s, pf_struct_i)
+void	ft_utils_pf_control(char *s, pf_struct_i)
 {
 	pf_struct_i   pf_i;
 	char    *set_convertion;
@@ -24,9 +24,13 @@ void	ft_utils_pf_flags_control(char *s, pf_struct_i)
 	set_flags = " -+#0";
 	while (*s)
 	{
-		if (ft_strchr(set_flags, s) != 0 && ft_strchr(s, '.') != 0)
+		if (ft_strchr(set_flags, s) != 0)
+		{
 			*pf_i.flags = *s;
-		if (ft_strchr(set_dig_n_z, s) != 0 && ft_strchr(s, '.') != 0)
+			s++;
+			pf_i.flags++;
+		}
+		if (ft_strchr(set_dig_n_z, s) != 0)
 			pf_i.width = ft_atoi(s);
 		if (ft_strchr(s, '.') != 0)
 			s++;
@@ -36,5 +40,6 @@ void	ft_utils_pf_flags_control(char *s, pf_struct_i)
 			return ;
 		s++;
 	}
-	//%[$][flags][width][.precision][length modifier]conversion
 }
+
+//%[$][flags][width][.precision][length modifier]conversion
