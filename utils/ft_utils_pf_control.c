@@ -35,9 +35,11 @@ void	ft_utils_pf_control(char *s, pf_struct_i)
 		if (ft_strchr(s, '.') != 0)
 			s++;
 			pf_i.precision = ft_atoi(s);
-		if (ft_strchr(set_convertion, s))
-			pf_i.convertion = ft_strchr(set_convertion, s);
+		if (ft_strchr(set_convertion, s) != 0)
+		{
+			pf_i.convertion = s;
 			return ;
+		}
 		s++;
 	}
 }
