@@ -17,8 +17,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Werror -I .
 
 # source flags 
-SRCS = ft_printf.c ft_itoa_count.c ft_itoa_hexadec_count.c ft_itoa_unsigned_count.c \
-	ft_print_void_count.c ft_putchar_count.c ft_putstr_count.c
+SRCS = ft_printf.c ft_itoa_hex.c ft_utils.c ft_itoa.c ft_itoa_unsigned.c ft_itoa_ptr.c ft_trans.c
 
 # object flags
 OBJECTS = $(SRCS:.c=.o)
@@ -30,7 +29,7 @@ NAME = libftprintf.a
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@ar rcs $@ $^
+	@ar rcs $(NAME) $(OBJECTS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -40,7 +39,7 @@ clean:
 	@echo "Object files cleaned."
 
 fclean:
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(OBJECTS)
 	@echo "Library cleaned."
 
 re: fclean all

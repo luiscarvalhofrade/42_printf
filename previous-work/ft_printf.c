@@ -46,7 +46,7 @@ int	ft_printf(const char *s, ...)
 		{
 			s++;
 			ft_return_printf(args, (char *)s);
-			ft_return_printf(args, s)
+			ft_return_printf(args, s);
 		}
 		else
 			ft_putchar_fd(*s, 1);
