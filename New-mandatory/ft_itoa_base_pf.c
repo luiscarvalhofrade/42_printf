@@ -1,41 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa_base_pf.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luide-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/07 13:31:28 by luide-ca          #+#    #+#             */
+/*   Updated: 2024/11/07 13:31:29 by luide-ca         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static int	ft_count_hexnbr(unsigned int n)
+static int	ft_size_of_hex(unsigned int n)
 {
-	int				count;
-	unsigned int	wres;
+	int	counter;
 
-	count = 0;
-	wres = n;
+	counter = 0;
 	if (n == 0)
-		count = 1;
+		counter = 1;
 	else
 	{
-		while (wres != 0)
+		while (n != 0)
 		{
-			wres = wres / 16;
-			count++;
+			n /= 16;
+			counter++;
 		}
 	}
-	return (count);
+	return (counter);
 }
 
-static char	*ft_convert_nbr_to_char_hex(char *result, int i,
-			unsigned int wres, char *base)
+static char	*ft_convert_n_to_hex(char *result, int i,
+			unsigned int n, char *base)
 {
-	int		j;
+	int	j;
 
 	j = i;
-	if (wres == 0)
+	if (n == 0)
 	{
 		result[0] = base[0];
 		result[1] = '\0';
 		return (result);
 	}
-	while (wres > 0)
+	while (n > 0)
 	{
-		result[i - 1] = base[wres % 16];
-		wres = wres / 16;
+		result[i - 1] = base[n % 16];
+		n /= 16;
 		i--;
 	}
 	result[j] = '\0';
@@ -44,12 +54,10 @@ static char	*ft_convert_nbr_to_char_hex(char *result, int i,
 
 void	ft_itoa_base_pf(int n, char *base, int *count)
 {
-	char				*result;
-	int					i;
-	unsigned long		wres;
+	char	*result;
+	int		i;
 
-	wres = n;
-	i = ft_count_hexnbr(n);
+	i = ft_size_of_hex(n);
 	result = (char *)malloc(sizeof(char) * (i + 1));
 	if (result == NULL)
 		return ;
@@ -60,7 +68,7 @@ void	ft_itoa_base_pf(int n, char *base, int *count)
 	}
 	else
 	{
-		ft_convert_nbr_to_char_hex(result, i, wres, base);
+		ft_convert_n_to_hex(result, i, n, base);
 		ft_putstr_pf(result, count);
 		free(result);
 	}

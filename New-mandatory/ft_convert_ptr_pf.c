@@ -1,26 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_convert_ptr_pf.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luide-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/07 13:31:15 by luide-ca          #+#    #+#             */
+/*   Updated: 2024/11/07 13:31:17 by luide-ca         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	ft_count_ptr_nbr(unsigned long n)
+static int	ft_size_of_ptr(unsigned long n)
 {
-	int				count;
-	unsigned long	wres;
+	int	counter;
 
-	count = 0;
-	wres = n;
+	counter = 0;
 	if (n == 0)
-		count = 1;
+		counter = 1;
 	else
 	{
-		while (wres != 0)
+		while (n != 0)
 		{
-			wres = wres / 16;
-			count++;
+			n = n / 16;
+			counter++;
 		}
 	}
-	return (count);
+	return (counter);
 }
 
-char	*ft_convert_nbr_to_char_ptr(char *result, int i,
+static char	*ft_convert_nbr_to_char_ptr(char *result, int i,
 			unsigned long wres, char *base)
 {
 	int		j;
@@ -42,14 +52,14 @@ char	*ft_convert_nbr_to_char_ptr(char *result, int i,
 	return (result);
 }
 
-void	ft_itoa_ptr_pf(unsigned long n, char *base, int *count)
+static void	ft_itoa_ptr_pf(unsigned long n, char *base, int *count)
 {
 	char				*result;
 	int					i;
 	unsigned long		wres;
 
 	wres = n;
-	i = ft_count_ptr_nbr(n);
+	i = ft_size_of_ptr(n);
 	result = (char *)malloc(sizeof(char) * (i + 1));
 	if (result == NULL)
 		return ;
@@ -71,13 +81,7 @@ void	ft_convert_ptr_pf(void *ptr, char *base, int *count)
 	unsigned long	n;
 
 	if (!ptr)
-	{
-		ft_putchar_pf('(', count);
-		ft_putchar_pf('n', count);
-		ft_putchar_pf('i', count);
-		ft_putchar_pf('l', count);
-		ft_putchar_pf(')', count);
-	}
+		ft_putstr_pf("(nil)", count);
 	else
 	{
 		n = (unsigned long)ptr;

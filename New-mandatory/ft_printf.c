@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luide-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/07 13:32:14 by luide-ca          #+#    #+#             */
+/*   Updated: 2024/11/07 13:32:16 by luide-ca         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static void	ft_convertion_printf(va_list args, char *s, int *count)
@@ -5,7 +17,7 @@ static void	ft_convertion_printf(va_list args, char *s, int *count)
 	if (*s == 'c')
 		ft_putchar_pf(va_arg(args, int), count);
 	else if (*s == 's')
-		ft_putstr_pf(va_arg(args, char *), count);
+		ft_trans_str(va_arg(args, char *), count);
 	else if (*s == 'p')
 		ft_convert_ptr_pf(va_arg(args, void *), "0123456789abcdef", count);
 	else if (*s == 'd')
