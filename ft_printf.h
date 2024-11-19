@@ -20,8 +20,8 @@
 
 int		ft_printf(const char *s, ...);
 void	ft_itoa_base_pf(int n, char *base, int *count);
-void	ft_itoa_pf(int n, int *count);
-void	ft_itoa_unsigned_pf(unsigned int n, int *count);
+void	ft_convert_nbr_pf(int n, int *count);
+void	ft_convert_unsigned_nbr_pf(unsigned int n, int *count);
 void	ft_convert_ptr_pf(void *ptr, char *base, int *count);
 void	ft_putchar_pf(char n, int *count);
 void	ft_putstr_pf(char *string, int *count);

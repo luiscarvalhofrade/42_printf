@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # compiler
-CC = gcc
+CC = cc
 
 # compiler flags
 CFLAGS = -Wall -Werror -Werror -I .

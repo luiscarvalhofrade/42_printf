@@ -21,11 +21,11 @@ static void	ft_convertion_printf(va_list args, char *s, int *count)
 	else if (*s == 'p')
 		ft_convert_ptr_pf(va_arg(args, void *), "0123456789abcdef", count);
 	else if (*s == 'd')
-		ft_itoa_pf(va_arg(args, int), count);
+		ft_convert_nbr_pf(va_arg(args, int), count);
 	else if (*s == 'i')
-		ft_itoa_pf(va_arg(args, int), count);
+		ft_convert_nbr_pf(va_arg(args, int), count);
 	else if (*s == 'u')
-		ft_itoa_unsigned_pf(va_arg(args, unsigned int), count);
+		ft_convert_unsigned_nbr_pf(va_arg(args, unsigned int), count);
 	else if (*s == 'x')
 		ft_itoa_base_pf(va_arg(args, int), "0123456789abcdef", count);
 	else if (*s == 'X')
